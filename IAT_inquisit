@@ -1,0 +1,470 @@
+**********************************************************************************************************************************************************************
+**********************************************************************************************************************************************************************
+这是一个用于测量内隐攻击性的IAT实验inquisit程序代码
+**********************************************************************************************************************************************************************
+**********************************************************************************************************************************************************************
+
+<values>
+/showsummaryfeedback = true
+</values>
+
+<item leibie1>
+/1 = "自我"
+</item>
+
+<item leibieci1>
+/1 = "我"
+/2 = "我们"
+/3 = "咱们"
+/4 = "本人"
+/5 = "自己"
+</item>
+
+<item leibie2>
+/1 = "他人"
+</item>
+
+<item leibieci2>
+/1 = "他"
+/2 = "他们"
+/3 = "外人"
+/4 = "他人"
+/5 = "别人"
+</item>
+
+<item shuxing1>
+/1 = "攻击"
+</item>
+
+<item shuxingci1>
+/1 = "打倒"
+/2 = "进攻"
+/3 = "占领"
+/4 = "搏斗"
+/5 = "抢夺"
+/6 = "格斗"
+</item>
+
+<item shuxing2>
+/1 = "非攻击"
+</item>
+
+<item shuxingci2>
+/1 = "友好"
+/2 = "合作"
+/3 = "包容"
+/4 = "信任"
+/5 = "温柔"
+/6 = "真诚"
+</item>
+
+<trial summary>
+/ stimulustimes = [0=summary]
+/ validresponse = (" ")
+/ recorddata = false
+/ ontrialbegin = [values.magnitude = "几乎没有"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.15 ) values.magnitude = "稍微"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.35 ) values.magnitude = "有些"]
+/ ontrialbegin = [if( abs(expressions.d) >= 0.65 ) values.magnitude = "非常"]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.preferred = item.shuxing1.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.preferred = item.shuxing2.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.notpreferred= item.shuxing1.1]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.notpreferred= item.shuxing2.1]
+</trial>
+
+<text summary>
+/ items = ("你的内隐攻击得分是 <% expressions.d %>, 说明   比起 <% expressions.notpreferred %>你<% values.magnitude %>偏好 <% expressions.preferred %>.~n~n~n请按空格键完成此阶段的测试.") 
+/ size = (60%, 60%)
+/ hjustify = left
+ </text>
+
+<trial instructions>
+/ stimulustimes = [1=instructions, spacebar]
+/ correctresponse = (" ")
+/ errormessage = false
+/ recorddata = false
+</trial>
+
+<text instructions>
+/ items = instructions
+/ hjustify = left
+/ size = (90%, 60%)
+/ position = (50%, 85%)
+/ valign = bottom
+/ select = sequence
+/ resetinterval = 20
+</text>
+
+<item instructions>
+/ 1 = "将你的左手食指放在F键上，右手食指放在J键上。屏幕的左上角和右上角会分别出现一个词汇，屏幕中央会依次出现和左上角或者右上角的词汇属于同一个类别的词汇。当出现的词汇与左边同类时按F键，当出现的词汇与右边同类时按J键。中间出现的词汇只属于一个类别，当出现错误时会出现X ，请按正确的按键做出纠正。
+
+这是一个反应时实验，请你在保证正确率的情况下尽量快的作出反应。"
+/ 2 = "现在，屏幕上的词汇发生了变化，但规则与之前相同。当出现的词汇与左边同类时按F键，当出现的词汇与右边同类时按J键。
+
+请你在保证正确率的情况下尽量快的作出反应。"
+/ 3 = "请注意屏幕上方，此时你见过的四个类别都已出现。注意中间的词汇只属于其中一组类别词。举个例子, 如果类别 <%item.shuxing1.item(1)%> 和<%item.leibie1.item(1)%> 出现在屏幕不同的两边，说明 <%item.shuxing1.item(1)%> 应该属于 <%item.shuxing1.item(1)%> 一类，不是 <%item.leibie1.item(1)%> 一类。
+
+中间词汇的颜色可能会帮助你作出判断。按F或J作出反应，当反应错误时请按正确按钮进行校正。"
+/ 4 = "再次把词汇按照上方的四个类别进行分类。按F或J作出反应，当反应错误时请按正确按钮进行校正。
+
+请在保证正确率的情况下尽快做出反应。"
+/ 5 = "请注意屏幕上方，现在只有两个类别，但它们交换了位置。请对这种新的位置进行练习。按F或J作出反应，当反应错误时请按正确按钮进行校正。
+
+请在保证正确率的情况下尽快做出反应。"
+/ 6 = "请注意屏幕上方，四个类别词的排列方式发生了变化，注意中间的词汇只属于其中一组类别词。中间词汇的颜色可能会帮助你作出判断。按F或J作出反应，当反应错误时请按正确按钮进行校正。
+
+请在保证正确率的情况下尽快做出反应。"
+/ 7 = "再次把目标词按照上方的四个类别进行分类。中间词汇的颜色可能会帮助你作出判断。按F或J作出反应，当反应错误时请按正确按钮进行校正。
+
+请在保证正确率的情况下尽快做出反应。"
+</item>
+
+<text spacebar>
+/ items = ("请按空格键开始实验")
+/ position = (50%, 95%)
+/ valign = bottom
+</text>
+
+<text leibieci1>
+/ items = leibieci1
+/ fontstyle = ("宋体", 5%)
+/ txcolor = (0, 255, 0)
+</text>
+
+<text leibieci2>
+/ items = leibieci2
+/ fontstyle = ("宋体", 5%)
+/ txcolor = (0, 255, 0)
+</text>
+
+<text shuxingci2>
+/ items = shuxingci2
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text shuxingci1>
+/ items = shuxingci1
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text error>
+/ position = (50%, 75%)
+/ items = ("X")
+/ color = (255, 0, 0)
+/ fontstyle = ("Arial", 10%, true)
+</text>
+
+<text leibieci1left>
+/ items = leibie1
+/ valign = top
+/ halign = left
+/ position = (5%, 5%)
+/ txcolor = (0, 255, 0)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text leibieci2right>
+/ items = leibie2
+/ valign = top
+/ halign = right
+/ position = (95%, 5%)
+/ txcolor = (0, 255, 0)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text leibieci1leftmixed>
+/ items = leibie1
+/ valign = top
+/ halign = left
+/ position = (5%, 19%)
+/ txcolor = (0, 255, 0)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text leibieci2rightmixed>
+/ items = leibie2
+/ valign = top
+/ halign = right
+/ position = (95%, 19%)
+/ txcolor = (0, 255, 0)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text shuxingci2left>
+/ items = shuxing2
+/ valign = top
+/ halign = left	
+/ position = (5%, 5%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text shuxingci2right>
+/ items = shuxing2
+/ valign = top
+/ halign = right
+/ position = (95%, 5%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text shuxingci1left>
+/ items = shuxing1
+/ valign = top
+/ halign = left
+/ position = (5%, 5%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text shuxingci1right>
+/ items = shuxing1
+/ valign = top
+/ halign = right
+/ position = (95%, 5%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text orleft>
+/ items = ("or")
+/ valign = top
+/ halign = left
+/ position = (5%, 12%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<text orright>
+/ items = ("or")
+/ valign = top
+/ halign = right
+/ position = (95%, 12%)
+/ fontstyle = ("宋体", 5%)
+</text>
+
+<trial leibieci1>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = leibieci1]
+/ posttrialpause = 250
+</trial>
+
+<trial leibieci2>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = leibieci2]
+/ posttrialpause = 250
+</trial>
+
+
+<trial shuxingci2left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = shuxingci2]
+/ posttrialpause = 250
+</trial>
+
+<trial shuxingci2right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = shuxingci2]
+/ posttrialpause = 250
+</trial>
+
+<trial shuxingci1left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = shuxingci1]
+/ posttrialpause = 250
+</trial>
+
+<trial shuxingci1right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = shuxingci1]
+/ posttrialpause = 250
+</trial>
+
+<block attributepractice>
+/ bgstim = (leibieci1left, leibieci2right)
+/ trials = [1=instructions;2-21 = random(leibieci1, leibieci2)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block targetcompatiblepractice>
+/ bgstim = (shuxingci1left, shuxingci2right)
+/ trials = [1=instructions;2-21 = random(shuxingci1left, shuxingci2right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block targetincompatiblepractice>
+/ bgstim = (shuxingci1right, shuxingci2left)
+/ trials = [1=instructions;2-21 = random(shuxingci1right, shuxingci2left)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block targetcompatiblepracticeswitch>
+/ bgstim = (shuxingci1left, shuxingci2right)
+/ trials = [1=instructions;2-41 = random(shuxingci1left, shuxingci2right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block targetincompatiblepracticeswitch>
+/ bgstim = (shuxingci1right, shuxingci2left)
+/ trials = [1=instructions;2-41 = random(shuxingci1right, shuxingci2left)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block compatibletest1>
+/ bgstim = (shuxingci1left, orleft, leibieci1leftmixed, shuxingci2right, orright, leibieci2rightmixed)
+/ trials = [1=instructions;
+  3,5,7,9,11,13,15,17,19,21= random(shuxingci1left, shuxingci2right);
+  2,4,6,8,10,12,14,16,18,20 = random(leibieci1, leibieci2)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.compatibletest1.latency  <= 10000 && block.compatibletest1.currenttrialnumber != 1 ) values.sum1a =  values.sum1a + block.compatibletest1.latency]
+/ ontrialend = [if(block.compatibletest1.latency  <= 10000 && block.compatibletest1.currenttrialnumber != 1 ) values.n1a +=  1]
+/ ontrialend = [if(block.compatibletest1.latency  <= 10000 && block.compatibletest1.currenttrialnumber != 1 ) values.ss1a =  values.ss1a + (block.compatibletest1.latency * block.compatibletest1.latency)]
+/ ontrialend = [if(block.compatibletest1.latency  <= 10000 && block.compatibletest1.currenttrialnumber != 1 ) values.n_correct += block.compatibletest1.correct]
+</block>
+
+<block compatibletest2>
+/ bgstim = (shuxingci1left, orleft, leibieci1leftmixed, shuxingci2right, orright, leibieci2rightmixed)
+/ trials = [
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(shuxingci1left, shuxingci2right);
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(leibieci1, leibieci2)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.compatibletest2.latency  <= 10000) values.sum1b =  values.sum1b + block.compatibletest2.latency]
+/ ontrialend = [if(block.compatibletest2.latency  <= 10000) values.n1b += 1]
+/ ontrialend = [if(block.compatibletest2.latency  <= 10000) values.ss1b =  values.ss1b + (block.compatibletest2.latency * block.compatibletest2.latency)]
+/ ontrialend = [if(block.compatibletest2.latency  <= 10000) values.n_correct += block.compatibletest2.correct]
+</block>
+
+<block incompatibletest1>
+/ bgstim = (shuxingci2left, orleft, leibieci1leftmixed, shuxingci1right, orright, leibieci2rightmixed)
+/ trials = [1=instructions;
+  3,5,7,9,11,13,15,17,19,21 = random(shuxingci2left, shuxingci1right);
+  2,4,6,8,10,12,14,16,18,20 = random(leibieci1, leibieci2)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.incompatibletest1.latency  <= 10000 && block.incompatibletest1.currenttrialnumber != 1) values.sum2a =  values.sum2a + block.incompatibletest1.latency]
+/ ontrialend = [if(block.incompatibletest1.latency  <= 10000 && block.incompatibletest1.currenttrialnumber != 1 ) values.n2a +=  1]
+/ ontrialend = [if(block.incompatibletest1.latency  <= 10000 && block.incompatibletest1.currenttrialnumber != 1 ) values.ss2a =  values.ss2a + (block.incompatibletest1.latency * block.incompatibletest1.latency)]
+/ ontrialend = [if(block.incompatibletest1.latency  <= 10000 && block.incompatibletest1.currenttrialnumber != 1 ) values.n_correct += block.incompatibletest1.correct]
+</block>
+
+<block incompatibletest2>
+/ bgstim = (shuxingci2left, orleft, leibieci1leftmixed, shuxingci1right, orright, leibieci2rightmixed)
+/ trials = [
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(shuxingci2left, shuxingci1right);
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(leibieci1, leibieci2)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.incompatibletest2.latency  <= 10000) values.sum2b =  values.sum2b + block.incompatibletest2.latency]
+/ ontrialend = [if(block.incompatibletest2.latency  <= 10000) values.n2b +=  1]
+/ ontrialend = [if(block.incompatibletest2.latency  <= 10000) values.ss2b =  values.ss2b + (block.incompatibletest2.latency * block.incompatibletest2.latency)]
+/ ontrialend = [if(block.incompatibletest2.latency  <= 10000) values.n_correct += block.incompatibletest2.correct]
+</block>
+
+
+<block compatibletestinstructions>
+/ bgstim = (shuxingci1left, orleft, leibieci1leftmixed, shuxingci2right, orright, leibieci2rightmixed)
+/ trials = [1=instructions]
+/ recorddata = false
+</block>
+
+<block incompatibletestinstructions>
+/ bgstim = (shuxingci2left, orleft, leibieci1leftmixed, shuxingci1right, orright, leibieci2rightmixed)
+/ trials = [1=instructions]
+/ recorddata = false
+</block>
+
+<block summary>
+/skip = [values.showsummaryfeedback == false]
+/ trials = [1=summary]
+/ recorddata = false
+</block>
+
+<defaults>
+/ fontstyle = ("Arial", 3.5%)
+/ screencolor = (0,0,0)
+/ txbgcolor = (0,0,0)
+/ txcolor = (255, 255, 255)
+/ minimumversion = "4.0.0.0"
+/ canvasaspectratio = (4, 3)
+</defaults>
+
+<values>
+/ completed = 0
+/ sum1a = 0
+/ sum2a = 0
+/ sum1b = 0
+/ sum2b = 0
+/ n1a = 0
+/ n2a = 0
+/ n1b = 0
+/ n2b = 0
+/ ss1a = 0
+/ ss2a = 0
+/ ss1b = 0
+/ ss2b = 0
+/ magnitude = "unknown"
+/ n_correct = 0
+</values>
+
+<expressions>
+/ m1a = values.sum1a / values.n1a
+/ m2a = values.sum2a / values.n2a
+/ m1b = values.sum1b / values.n1b
+/ m2b = values.sum2b / values.n2b
+/ sd1a = sqrt((values.ss1a - (values.n1a * (expressions.m1a * expressions.m1a))) / (values.n1a - 1))
+/ sd2a = sqrt((values.ss2a - (values.n2a * (expressions.m2a * expressions.m2a))) / (values.n2a - 1))
+/ sd1b = sqrt((values.ss1b - (values.n1b * (expressions.m1b * expressions.m1b))) / (values.n1b - 1))
+/ sd2b = sqrt((values.ss2b - (values.n2b * (expressions.m2b * expressions.m2b))) / (values.n2b - 1))
+/ sda = sqrt((((values.n1a - 1) * (expressions.sd1a * expressions.sd1a) + (values.n2a - 1) * (expressions.sd2a * expressions.sd2a)) + ((values.n1a + values.n2a) * ((expressions.m1a - expressions.m2a) * (expressions.m1a - expressions.m2a)) / 4) ) / (values.n1a + values.n2a - 1) )
+/ sdb = sqrt((((values.n1b - 1) * (expressions.sd1b * expressions.sd1b) + (values.n2b - 1) * (expressions.sd2b * expressions.sd2b)) + ((values.n1b + values.n2b) * ((expressions.m1b - expressions.m2b) * (expressions.m1b - expressions.m2b)) / 4) ) / (values.n1b + values.n2b - 1) )
+/ da = (m2a - m1a) / expressions.sda
+/ db = (m2b - m1b) / expressions.sdb
+/ d = (expressions.da + expressions.db) / 2
+/ preferred = "unknown"
+/ notpreferred = "unknown"
+/ percentcorrect = (values.n_correct/ (values.n1a + values.n1b + values.n2a + values.n2b)) * 100
+</expressions>
+
+<expt >
+/subjects = (1 of 2)
+/ groupassignment = groupnumber
+/ blocks = [1=targetcompatiblepractice; 2=attributepractice; 3=compatibletest1; 4=compatibletestinstructions;
+				5=compatibletest2; 6=targetincompatiblepractice; 7=incompatibletest1; 8=incompatibletestinstructions; 
+				9=incompatibletest2; 10=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+<expt >
+/subjects = (2 of 2)
+/groupassignment = groupnumber
+/ blocks = [1=targetincompatiblepractice; 2=attributepractice; 3=incompatibletest1; 4=incompatibletestinstructions;
+				5=incompatibletest2; 6=targetcompatiblepractice; 7=compatibletest1; 8=compatibletestinstructions;
+				9=compatibletest2; 10=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+<monkey>
+/ latencydistribution = normal(500, 100)
+/ percentcorrect = 90
+</monkey>
+
+<data>
+/file = "gongjiIAT_rawdata.iqdat"
+/ columns = [date, time, group, subject, blockcode, blocknum, trialcode, trialnum, response, correct, latency, 
+					stimulusnumber, stimulusitem, expressions.da, expressions.db, expressions.d, expressions.percentcorrect ]
+/separatefiles = true
+</data>
+
+<summarydata >
+/file = "gongjiIAT_summary.iqdat"
+/columns = [script.filename, script.startdate, script.starttime, script.subjectid, script.groupid, script.elapsedtime, values.completed,
+expressions.da, expressions.db, expressions.d, expressions.percentcorrect]
+</summarydata>
